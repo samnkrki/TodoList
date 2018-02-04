@@ -1,0 +1,30 @@
+<!--put result in checkbox which causes font to strikethrough on checked-->
+
+<mat-card class="main-card">
+  <mat-card-header>
+    <form class="todo-input-form">
+      <mat-form-field class="todo-items">
+        <input matInput placeholder="Enter todo items" [(ngModel)]="item.name" name="name" required>
+      </mat-form-field>
+      <mat-form-field class="todo-items">
+        <textarea matInput placeholder="Description for the item" [(ngModel)]="item.description" name="description"></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button color="accent" (click)="add()">Add item</button>
+    </form>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let item of items; let i=index">
+        <h3 matLine>
+          <mat-checkbox>{{item.name}}</mat-checkbox>
+        </h3>
+        <p matLine>
+          <span> {{item.description}} </span>
+          <mat-divider></mat-divider>
+        </p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
