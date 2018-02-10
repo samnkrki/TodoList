@@ -1,4 +1,5 @@
 <!--put result in checkbox which causes font to strikethrough on checked-->
+<!-- store checkbox state in db so that on reloading, items checked before are still checked-->
 
 <mat-card class="main-card">
   <mat-card-header>
@@ -18,7 +19,7 @@
     <mat-list>
       <mat-list-item *ngFor="let item of items; let i=index">
         <h3 matLine>
-          <mat-checkbox>{{item.name}}</mat-checkbox>
+          <mat-checkbox [(ngModel)]="item.disabled" [disabled]="item.disabled" (change)="updateState(item._id)">{{item.name}}</mat-checkbox>
         </h3>
         <p matLine>
           <span> {{item.description}} </span>

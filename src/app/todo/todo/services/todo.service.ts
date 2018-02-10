@@ -21,5 +21,17 @@ export class TodoService {
       .map(this.baseService.extractData)
       .catch(this.baseService.handleError)
   }
+  remove(id: string): Observable<any> {
+    return this.http.delete(this.url + id, this.baseService.getOptions())
+      .map(this.baseService.extractData)
+      .catch(this.baseService.handleError)
+  }
+
+  updateState(id: string): Observable<any> {
+    let body = JSON.stringify(id)
+    return this.http.get(this.url + id, this.baseService.getOptions())//maybe use get
+      .map(this.baseService.extractData)
+      .catch(this.baseService.handleError)
+  }
 
 }

@@ -8,9 +8,13 @@ import { TodoService } from './services/todo.service';
 })
 export class TodoComponent implements OnInit {
 
+
+
   public item = {
+    _id: '',
     name: '',
-    description: ''
+    description: '',
+    disabled:false
   }
 
   public items: any = []
@@ -23,7 +27,7 @@ export class TodoComponent implements OnInit {
 
   getItems() {
     this.todoService.listAll()
-      .subscribe(result => {this.items = result},
+      .subscribe(result => { this.items = result },
       err => console.log(err))
   }
 
@@ -35,11 +39,26 @@ export class TodoComponent implements OnInit {
       },
       err => console.log(err))
   }
+  remove(id: string, i) {
+    this.todoService.remove(id)
+      .subscribe(result => {
+        this.items.splice(i, 1)
+      }, e => console.log(e))
+  }
+
+  updateState(id: string) {
+    this.todoService.updateState(id)
+      .subscribe(result => {
+        
+      }, e => console.log(e))
+  }
 
   resetItem() {
     this.item = {
+      _id: '',
       name: '',
-      description: ''
+      description: '',
+      disabled: false
     }
   }
 
