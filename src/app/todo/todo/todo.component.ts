@@ -14,7 +14,7 @@ export class TodoComponent implements OnInit {
     _id: '',
     name: '',
     description: '',
-    disabled:false
+    isDisabled: false
   }
 
   public items: any = []
@@ -28,7 +28,7 @@ export class TodoComponent implements OnInit {
   getItems() {
     this.todoService.listAll()
       .subscribe(result => { this.items = result },
-      err => console.log(err))
+        err => console.log(err))
   }
 
   add() {
@@ -37,7 +37,7 @@ export class TodoComponent implements OnInit {
         this.items.push(this.item)
         this.resetItem()
       },
-      err => console.log(err))
+        err => console.log(err))
   }
   remove(id: string, i) {
     this.todoService.remove(id)
@@ -49,7 +49,7 @@ export class TodoComponent implements OnInit {
   updateState(id: string) {
     this.todoService.updateState(id)
       .subscribe(result => {
-        
+        console.log(result.isDisabled)
       }, e => console.log(e))
   }
 
@@ -58,7 +58,7 @@ export class TodoComponent implements OnInit {
       _id: '',
       name: '',
       description: '',
-      disabled: false
+      isDisabled:false
     }
   }
 

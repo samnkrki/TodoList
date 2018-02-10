@@ -19,7 +19,7 @@
     <mat-list>
       <mat-list-item *ngFor="let item of items; let i=index">
         <h3 matLine>
-          <mat-checkbox [(ngModel)]="item.disabled" [disabled]="item.disabled" (change)="updateState(item._id)">{{item.name}}</mat-checkbox>
+          <mat-checkbox [(ngModel)]="item.isDisabled" [disabled]="item.isDisabled" (change)="updateState(item._id)">{{item.name}}</mat-checkbox>
         </h3>
         <p matLine>
           <span> {{item.description}} </span>
