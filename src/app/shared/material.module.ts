@@ -23,7 +23,7 @@ import {
   MatDialogModule,
   MatTooltipModule,
   MatSnackBarModule,
-  MatRadioModule
+  MatRadioModule,
 } from '@angular/material';
 
 
@@ -52,7 +52,7 @@ import {
     MatDialogModule,
     MatTooltipModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
   ],
   exports: [
     MatCheckboxModule,
@@ -78,6 +78,8 @@ import {
     MatDialogModule,
     MatTooltipModule,
     MatSnackBarModule,
-    MatRadioModule]
+    MatRadioModule,
+
+  ]
 })
 export class MaterialModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from './services/todo.service';
+import { TodoService } from './../services/todo.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-todo',
@@ -19,7 +20,7 @@ export class TodoComponent implements OnInit {
 
   public items: any = []
 
-  constructor(public todoService: TodoService) { }
+  constructor(public todoService: TodoService,public snackBar:MatSnackBar) { }
 
   ngOnInit() {
     this.getItems()
@@ -34,7 +35,7 @@ export class TodoComponent implements OnInit {
   add() {
     this.todoService.addNew(this.item)
       .subscribe(result => {
-        this.items.push(this.item)
+        this.items.push(result)
         this.resetItem()
       },
         err => console.log(err))
@@ -43,6 +44,9 @@ export class TodoComponent implements OnInit {
     this.todoService.remove(id)
       .subscribe(result => {
         this.items.splice(i, 1)
+        this.snackBar.open('Removed successfully', 'Success', {
+          duration: 3000
+        });
       }, e => console.log(e))
   }
 

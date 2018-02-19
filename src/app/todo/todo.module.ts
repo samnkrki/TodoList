@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
 import { TodoComponent } from './todo/todo.component';
-import { TodoService } from './todo/services/todo.service';
+import { TodoService } from './services/todo.service';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
@@ -11,7 +11,7 @@ import { HttpModule } from '@angular/http';
     CommonModule,
     FormsModule,
     MaterialModule,
-    HttpModule
+    HttpModule,
   ],
   declarations: [TodoComponent],
   providers: [TodoService],

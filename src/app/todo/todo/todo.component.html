@@ -1,31 +1,43 @@
 <!--put result in checkbox which causes font to strikethrough on checked-->
 <!-- store checkbox state in db so that on reloading, items checked before are still checked-->
+<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-header>
+      <form class="todo-input-form">
+        <mat-form-field class="todo-items">
+          <input matInput placeholder="Enter todo items" [(ngModel)]="item.name" name="name" required>
+        </mat-form-field>
+        <mat-form-field class="todo-items">
+          <textarea matInput placeholder="Description for the item" [(ngModel)]="item.description" name="description"></textarea>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="accent" (click)="add()">Add item</button>
+      </form>
+    </mat-card-header>
 
-<mat-card class="main-card">
-  <mat-card-header>
-    <form class="todo-input-form">
-      <mat-form-field class="todo-items">
-        <input matInput placeholder="Enter todo items" [(ngModel)]="item.name" name="name" required>
-      </mat-form-field>
-      <mat-form-field class="todo-items">
-        <textarea matInput placeholder="Description for the item" [(ngModel)]="item.description" name="description"></textarea>
-      </mat-form-field>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let item of items; let i=index">
+          <h3 matLine>
+            <mat-checkbox [(ngModel)]="item.isDisabled" [disabled]="item.isDisabled" (change)="updateState(item._id)">{{item.name}}</mat-checkbox>
+            <mat-menu #appMenu="matMenu">
+              <button mat-menu-item (click)="remove(item._id,i)"> Remove </button>
+            </mat-menu>
 
-      <button mat-raised-button color="accent" (click)="add()">Add item</button>
-    </form>
-  </mat-card-header>
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+              <mat-icon>
+                <i class="material-icons">create</i>
+              </mat-icon>
 
-  <mat-card-content>
-    <mat-list>
-      <mat-list-item *ngFor="let item of items; let i=index">
-        <h3 matLine>
-          <mat-checkbox [(ngModel)]="item.isDisabled" [disabled]="item.isDisabled" (change)="updateState(item._id)">{{item.name}}</mat-checkbox>
-        </h3>
-        <p matLine>
-          <span> {{item.description}} </span>
-          <mat-divider></mat-divider>
-        </p>
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+            </button>
+
+          </h3>
+          <p matLine>
+            <span> {{item.description}} </span>
+            <mat-divider></mat-divider>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
